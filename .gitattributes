@@ -1,4 +1,55 @@
-# Auto detect text files and perform LF normalization
-* text=auto
-# Ignore executable files
+# =========================
+# Executable files
+# =========================
 *.exe
+*.out
+*.app
+
+# =========================
+# Object files
+# =========================
+*.o
+*.obj
+
+# =========================
+# Precompiled headers
+# =========================
+*.gch
+
+# =========================
+# Debug files
+# =========================
+*.pdb
+*.idb
+*.ilk
+
+# =========================
+# Logs & temp files
+# =========================
+*.log
+*.tmp
+*.temp
+
+# =========================
+# VS Code settings (optional)
+# =========================
+.vscode/
+
+# =========================
+# OS generated files
+# =========================
+Thumbs.db
+.DS_Store
+
+# =========================
+# Build folders
+# =========================
+build/
+bin/
+dist/
+
+# =========================
+# Backup files
+# =========================
+*~
+*.bak
