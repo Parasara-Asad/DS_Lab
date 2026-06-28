@@ -2,7 +2,7 @@
 
 int main()
 {
-    int arr[100], n, i, pos, num;
+    int arr[100], n, i, pos;
 
     printf("Enter array size: ");
     scanf("%d", &n);
@@ -13,27 +13,23 @@ int main()
         scanf("%d", &arr[i]);
     }
 
-    printf("Enter position: ");
+    printf("Enter position to delete: ");
     scanf("%d", &pos);
 
-    printf("Enter number to insert: ");
-    scanf("%d", &num);
-
-    if(pos < 1 || pos > n + 1)
+    if(pos < 1 || pos > n)
     {
         printf("Invalid Position");
         return 0;
     }
 
-    for(i = n; i >= pos; i--)
+    for(i = pos - 1; i < n - 1; i++)
     {
-        arr[i] = arr[i - 1];
+        arr[i] = arr[i + 1];
     }
 
-    arr[pos - 1] = num;
-    n++;
+    n--;
 
-    printf("Array after insertion:\n");
+    printf("Array after deletion:\n");
     for(i = 0; i < n; i++)
     {
         printf("%d ", arr[i]);
