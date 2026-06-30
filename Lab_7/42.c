@@ -113,7 +113,7 @@ int spe_pos_delete(int x)
 }
 
 int count_nodes(){
-    int count=0;
+    int count = 0;
     struct node *save;
     if (save == NULL)
     {
@@ -127,6 +127,7 @@ int count_nodes(){
     }
     return count;
 }
+
 void display()
 {
     struct node *temp;
@@ -192,9 +193,9 @@ int main()
         }
         else if (n == 7)
         {
-            printf("Count of node is: %d/n",count_nodes());
+            printf("Count of node is: %d/n", count_nodes());
         }
-        
+
         else if (n == 8)
         {
             break;
