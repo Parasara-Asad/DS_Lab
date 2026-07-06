@@ -7,7 +7,7 @@ struct node
     struct node *link;
 };
 
-struct node *first = NULL;
+struct node *first1 = NULL;
 
 void insertfirst(int x)
 {
@@ -16,22 +16,22 @@ void insertfirst(int x)
     newnode = (struct node *)malloc(sizeof(struct node));
 
     newnode->info = x;
-    newnode->link = first;
-    first = newnode;
+    newnode->link = first1;
+    first1 = newnode;
 }
 
 int firstdelete()
 {
     struct node *save;
 
-    if (first == NULL)
+    if (first1 == NULL)
     {
         printf("List is empty!\n");
         return 0;
     }
 
-    save = first;
-    first = first->link;
+    save = first1;
+    first1 = first1->link;
     free(save);
 
     return 1;
@@ -43,11 +43,11 @@ void insertlast(int x)
     newnode = (struct node *)malloc(sizeof(struct node));
     newnode->info = x;
     newnode->link = NULL;
-    if (first == NULL)
+    if (first1 == NULL)
     {
-        first = newnode;
+        first1 = newnode;
     }
-    save = first;
+    save = first1;
     while (save->link != NULL)
     {
         save = save->link;
@@ -58,12 +58,12 @@ void insertlast(int x)
 int lastdelete()
 {
     struct node *save, *pred;
-    if (first == NULL)
+    if (first1 == NULL)
     {
         printf("List is empty!");
         return 0;
     }
-    save = first;
+    save = first1;
     while (save->link != NULL)
     {
         pred = save;
@@ -78,14 +78,14 @@ int spe_pos_delete(int x)
 {
     struct node *save, *pred;
 
-    if (first == NULL)
+    if (first1 == NULL)
     {
         printf("List is empty!\n");
         return 0;
     }
 
     pred = NULL;
-    save = first;
+    save = first1;
 
     while (save != NULL && save->info != x)
     {
@@ -101,7 +101,7 @@ int spe_pos_delete(int x)
 
     if (pred == NULL)
     {
-        first = save->link;
+        first1 = save->link;
     }
     else
     {
@@ -112,14 +112,15 @@ int spe_pos_delete(int x)
     return 1;
 }
 
-int count_nodes(){
+int count_nodes()
+{
     int count = 0;
     struct node *save;
     if (save == NULL)
     {
         printf("List is empty!");
     }
-    save = first;
+    save = first1;
     while (save != NULL)
     {
         save = save->link;
@@ -132,13 +133,13 @@ void display()
 {
     struct node *temp;
 
-    if (first == NULL)
+    if (first1 == NULL)
     {
         printf("List is empty!\n");
         return;
     }
 
-    temp = first;
+    temp = first1;
     printf("\n=============================================\n");
     printf("Node is: ");
     while (temp != NULL)

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 struct node
 {
@@ -7,23 +7,25 @@ struct node
     struct node *link;
 };
 
-struct node *first = NULL;
+struct node *first1 = NULL;
 
-void insertfirst(int x){
+void insertfirst(int x)
+{
     struct node *newnode = (struct node *)malloc(sizeof(struct node));
     newnode->info = x;
-    newnode->link = first;
-    first = newnode;
+    newnode->link = first1;
+    first1 = newnode;
 }
 
-void removeduplicat(){
-    struct node *save,*temp;
-    if (first == NULL)
+void removeduplicat()
+{
+    struct node *save, *temp;
+    if (first1 == NULL)
     {
         printf("List is empty!");
         return;
     }
-    save = first;
+    save = first1;
     while (save->link != NULL)
     {
         if (save->info == save->link->info)
@@ -35,28 +37,28 @@ void removeduplicat(){
         else
         {
             save = save->link;
-        } 
-    } 
-    
-    
+        }
+    }
 }
 
-void display(){
+void display()
+{
     struct node *save;
-    if (first == NULL)
+    if (first1 == NULL)
     {
         printf("List is empty!");
         return;
     }
-    save = first;
+    save = first1;
     while (save != NULL)
     {
-        printf(" %d ",save->info);
+        printf(" %d ", save->info);
         save = save->link;
     }
-    printf("\n"); 
+    printf("\n");
 }
-int main(){
+int main()
+{
     insertfirst(1);
     insertfirst(1);
     insertfirst(1);

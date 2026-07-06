@@ -7,7 +7,7 @@ struct node
     struct node *Link;
 };
 
-struct node *first = NULL;
+struct node *first1 = NULL;
 
 int main()
 {
@@ -22,10 +22,10 @@ int main()
         printf("Enter data: ");
         scanf("%d", &newnode->info);
         newnode->Link = NULL;
-        if (first == NULL)
+        if (first1 == NULL)
         {
-            first = newnode;
-            temp = first;
+            first1 = newnode;
+            temp = first1;
         }
         else
         {
@@ -33,7 +33,7 @@ int main()
             temp = newnode;
         }
     }
-    temp = first;
+    temp = first1;
 
     printf("Data are: ");
     while (temp != NULL)
