@@ -14,7 +14,7 @@ int main()
     struct node *newnode, *temp;
     temp = newnode;
     int n;
-    printf("HOw many data: ");
+    printf("How many data: ");
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
