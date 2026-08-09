@@ -75,7 +75,7 @@ int main()
     insertfirst(1);
     printf("Before link list is: ");
     display();
-    swapK(2);
+    swapK(4);
     printf("After sawp link list is: ");
     display();
 
