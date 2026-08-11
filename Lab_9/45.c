@@ -6,64 +6,67 @@ struct node
     int info;
     struct node *link;
 };
-
 struct node *first1 = NULL;
 struct node *first2 = NULL;
 
-void insertlast(int x)
+void insertlast1(int x)
 {
-    struct node *newnode, *save;
-
+    struct node *newnode;
     newnode = (struct node *)malloc(sizeof(struct node));
     newnode->info = x;
     newnode->link = NULL;
+    if (newnode == NULL)
+    {
+        return;
+    }
 
     if (first1 == NULL)
     {
         first1 = newnode;
-        return;
     }
-
-    save = first1;
-
-    while (save->link != NULL)
+    else
     {
-        save = save->link;
+        struct node *save = first1;
+        while (save->link != NULL)
+        {
+            save = save->link;
+        }
+        save->link = newnode;
     }
-
-    save->link = newnode;
 }
-
 void insertlast2(int x)
 {
-    struct node *newnode, *save;
-
+    struct node *newnode;
     newnode = (struct node *)malloc(sizeof(struct node));
     newnode->info = x;
     newnode->link = NULL;
+    if (newnode == NULL)
+    {
+        return;
+    }
 
     if (first2 == NULL)
     {
         first2 = newnode;
-        return;
     }
-
-    save = first2;
-
-    while (save->link != NULL)
+    else
     {
-        save = save->link;
+        struct node *save = first2;
+        while (save->link != NULL)
+        {
+            save = save->link;
+        }
+        save->link = newnode;
     }
-
-    save->link = newnode;
 }
 
-void copy()
+void copylist()
 {
-    struct node *save;
-
-    save = first1;
-
+    struct node *save = first1;
+    if (first1 == NULL)
+    {
+        return;
+    }
     while (save != NULL)
     {
         insertlast2(save->info);
@@ -73,69 +76,47 @@ void copy()
 
 void display1()
 {
-    struct node *temp;
-
     if (first1 == NULL)
     {
-        printf("First List is empty!\n");
+        printf("List is empty\n");
         return;
     }
 
-    temp = first1;
-
-    printf("First List: ");
-
-    while (temp != NULL)
+    struct node *save = first1;
+    printf("List is:");
+    while (save != NULL)
     {
-        printf("%d ", temp->info);
-        temp = temp->link;
+        printf(" %d", save->info);
+        save = save->link;
     }
-
     printf("\n");
 }
-
 void display2()
 {
-    struct node *temp;
-
     if (first2 == NULL)
     {
-        printf("Copy List is empty!\n");
+        printf("List is empty\n");
         return;
     }
 
-    temp = first2;
-
-    printf("Copy List: ");
-
-    while (temp != NULL)
+    struct node *save = first2;
+    printf("List is:");
+    while (save != NULL)
     {
-        printf("%d ", temp->info);
-        temp = temp->link;
+        printf(" %d", save->info);
+        save = save->link;
     }
-
     printf("\n");
 }
 
 int main()
 {
-    int size, x;
-
-    printf("Enter size of list: ");
-    scanf("%d", &size);
-
-    for (int i = 0; i < size; i++)
-    {
-        printf("Enter node info: ");
-        scanf("%d", &x);
-        insertlast(x);
-    }
-
-    printf("\n");
+    insertlast1(1);
+    insertlast1(2);
+    insertlast1(3);
+    insertlast1(4);
     display1();
-
-    copy();
-
+    copylist();
     display2();
 
     return 0;

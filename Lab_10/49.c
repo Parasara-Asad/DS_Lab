@@ -40,13 +40,9 @@ void insertbetweenGCD()
     while (save != NULL && save->link != NULL)
     {
         newnode = (struct node *)malloc(sizeof(struct node));
-
         newnode->info = findGCD(save->info, save->link->info);
-
         newnode->link = save->link;
-
         save->link = newnode;
-
         save = newnode->link;
     }
 }

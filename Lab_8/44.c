@@ -6,68 +6,72 @@ struct node
     int info;
     struct node *link;
 };
-
-struct node *first1 = NULL;
+struct node *first = NULL;
 
 void insertfirst(int x)
 {
-    struct node *newnode = (struct node *)malloc(sizeof(struct node));
+    struct node *newnode;
+    newnode = (struct node *)malloc(sizeof(struct node));
     newnode->info = x;
-    newnode->link = first1;
-    first1 = newnode;
+    newnode->link = first;
+    first = newnode;
 }
 
-void removeduplicat()
+void removeduplicates()
 {
-    struct node *save, *temp;
-    if (first1 == NULL)
+    struct node *save;
+    if (first == NULL)
     {
-        printf("List is empty!");
         return;
     }
-    save = first1;
-    while (save->link != NULL)
+    else
     {
-        if (save->info == save->link->info)
+        save = first;
+        while (save->link != NULL)
         {
-            temp = save->link;
-            save->link = temp->link;
-            free(temp);
-        }
-        else
-        {
-            save = save->link;
+            if (save->info == save->link->info)
+            {
+               struct node *temp = save->link;
+                save->link = save->link->link;
+                free(temp);
+            }
+            else{
+                save = save->link;
+            }
         }
     }
 }
 
 void display()
 {
-    struct node *save;
-    if (first1 == NULL)
+    if (first == NULL)
     {
-        printf("List is empty!");
+        printf("List is empty\n");
         return;
     }
-    save = first1;
+
+    struct node *save = first;
+    printf("List is:");
     while (save != NULL)
     {
-        printf(" %d ", save->info);
+        printf(" %d", save->info);
         save = save->link;
     }
     printf("\n");
 }
+
 int main()
 {
+    insertfirst(27);
+    insertfirst(27);
+    insertfirst(13);
+    insertfirst(13);
+    insertfirst(13);
+    insertfirst(6);
     insertfirst(1);
     insertfirst(1);
-    insertfirst(1);
-    insertfirst(2);
-    insertfirst(2);
-    insertfirst(50);
-    insertfirst(5);
-    insertfirst(50);
-    removeduplicat();
+    display();
+    removeduplicates();
     display();
     return 0;
 }

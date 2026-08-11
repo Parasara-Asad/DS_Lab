@@ -6,202 +6,154 @@ struct node
     int info;
     struct node *link;
 };
-
-struct node *first1 = NULL;
+struct node *first = NULL;
 
 void insertfirst(int x)
 {
     struct node *newnode;
-
     newnode = (struct node *)malloc(sizeof(struct node));
-
     newnode->info = x;
-    newnode->link = first1;
-    first1 = newnode;
-}
-
-int firstdelete()
-{
-    struct node *save;
-
-    if (first1 == NULL)
-    {
-        printf("List is empty!\n");
-        return 0;
-    }
-
-    save = first1;
-    first1 = first1->link;
-    free(save);
-
-    return 1;
+    newnode->link = first;
+    first = newnode;
 }
 
 void insertlast(int x)
 {
-    struct node *newnode, *save;
+    struct node *newnode;
     newnode = (struct node *)malloc(sizeof(struct node));
     newnode->info = x;
     newnode->link = NULL;
-    if (first1 == NULL)
+    if (newnode == NULL)
     {
-        first1 = newnode;
+        return;
     }
-    save = first1;
-    while (save->link != NULL)
+
+    if (first == NULL)
     {
-        save = save->link;
+        first = newnode;
     }
-    save->link = newnode;
+    else
+    {
+        struct node *save = first;
+        while (save->link != NULL)
+        {
+            save = save->link;
+        }
+        save->link = newnode;
+    }
 }
 
-int lastdelete()
+void deletefirst()
 {
-    struct node *save, *pred;
-    if (first1 == NULL)
+    struct node *temp = first;
+    if (first == NULL)
     {
         printf("List is empty!");
-        return 0;
+        return;
     }
-    save = first1;
-    while (save->link != NULL)
+    else
     {
-        pred = save;
-        save = save->link;
+        first = first->link;
+        free(temp);
     }
-    pred->link = NULL;
-    free(save);
-    return 1;
 }
 
-int spe_pos_delete(int x)
+void deletelast()
 {
-    struct node *save, *pred;
-
-    if (first1 == NULL)
+    if (first == NULL)
     {
-        printf("List is empty!\n");
-        return 0;
+        printf("List is empty");
+        return;
     }
+    if (first->link == NULL)
+    {
+        free(first);
+        first->link = NULL;
+    }
+    else
+    {
+        struct node *save = first, *temp = first;
+        while (save->link->link != NULL)
+        {
+            save = save->link;
+        }
+        temp = save->link;
+        free(temp);
+        save->link = NULL;
+    }
+}
 
-    pred = NULL;
-    save = first1;
-
+void delete_spe_pos(int x)
+{
+    if (first == NULL)
+    {
+        printf("List is empty!");
+        return;
+    }
+    if (first->info == x)
+    {
+        struct node *temp = first;
+        first = first->link;
+        free(temp);
+    }
+    struct node *save = first;
+    struct node *pred = save;
     while (save != NULL && save->info != x)
     {
         pred = save;
         save = save->link;
     }
-
     if (save == NULL)
     {
-        printf("Value not found!\n");
-        return 0;
+        printf("Element not found");
+        return;
     }
-
-    if (pred == NULL)
-    {
-        first1 = save->link;
-    }
-    else
-    {
-        pred->link = save->link;
-    }
-
+    pred->link = save->link;
     free(save);
-    return 1;
 }
 
-int count_nodes()
-{
-    int count = 0;
-    struct node *save;
-    if (save == NULL)
+void conut_nodes(){
+    int count=0;
+    struct node *save=first;
+    while (save!=NULL)
     {
-        printf("List is empty!");
-    }
-    save = first1;
-    while (save != NULL)
-    {
-        save = save->link;
         count++;
+        save = save->link;
     }
-    return count;
+    printf("Number of nodes is: %d\n",count);
+    
 }
 
 void display()
 {
-    struct node *temp;
-
-    if (first1 == NULL)
+    if (first == NULL)
     {
-        printf("List is empty!\n");
+        printf("List is empty\n");
         return;
     }
 
-    temp = first1;
-    printf("\n=============================================\n");
-    printf("Node is: ");
-    while (temp != NULL)
+    struct node *save = first;
+    printf("List is:");
+    while (save != NULL)
     {
-        printf("%d ", temp->info);
-        temp = temp->link;
+        printf(" %d", save->info);
+        save = save->link;
     }
-    printf("\n=============================================\n");
+    printf("\n");
 }
 
 int main()
 {
-    int n;
-    while (1)
-    {
-        printf("(1) - Insert at first\n");
-        printf("(2) - display all nodes\n");
-        printf("(3) - Delete at first\n");
-        printf("(4) - Insert at last\n");
-        printf("(5) - Delete at last\n");
-        printf("(6) - Delete at specified position\n");
-        printf("(7) - Count nodes\n");
-        printf("(8) - Exit\n");
-        printf("Enter what did you want: ");
-        scanf("%d", &n);
-        if (n == 1)
-        {
-            insertfirst(20);
-            insertfirst(10);
-            insertfirst(8);
-            insertfirst(4);
-        }
-        else if (n == 2)
-        {
-            display();
-        }
-        else if (n == 3)
-        {
-            firstdelete();
-        }
-        else if (n == 4)
-        {
-            insertlast(50);
-        }
-        else if (n == 5)
-        {
-            lastdelete();
-        }
-        else if (n == 6)
-        {
-            spe_pos_delete(10);
-        }
-        else if (n == 7)
-        {
-            printf("Count of node is: %d/n", count_nodes());
-        }
-
-        else if (n == 8)
-        {
-            break;
-        }
-    }
-
+    insertfirst(3);
+    insertfirst(2);
+    insertfirst(1);
+    insertlast(4);
+    insertlast(5);
+    insertlast(6);
+    deletefirst();
+    deletelast();
+    delete_spe_pos(4);
+    conut_nodes();
+    display();
     return 0;
 }

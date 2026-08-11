@@ -4,44 +4,50 @@
 struct node
 {
     int info;
-    struct node *Link;
+    struct node *link;
 };
 
-struct node *first1 = NULL;
+struct node *first = NULL;
+
+void insertfirst(int x)
+{
+    struct node *newnode;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    newnode->info = x;
+    newnode->link = first;
+    first = newnode;
+}
+
+void dispaly()
+{
+    struct node *save;
+    save = first;
+    if (first == NULL)
+    {
+        printf("List is empty");
+    }
+    printf("List is: ");
+    while (save != NULL)
+    {
+        printf(" %d", save->info);
+        save = save->link;
+    }
+}
 
 int main()
 {
-    struct node *newnode, *temp;
-    temp = newnode;
     int n;
-    printf("How many data: ");
-    scanf("%d", &n);
+    printf("Enter how many data: ");
+    scanf("%d",&n);
+    int x;
     for (int i = 0; i < n; i++)
     {
-        newnode = (struct node *)malloc(sizeof(struct node));
         printf("Enter data: ");
-        scanf("%d", &newnode->info);
-        newnode->Link = NULL;
-        if (first1 == NULL)
-        {
-            first1 = newnode;
-            temp = first1;
-        }
-        else
-        {
-            temp->Link = newnode;
-            temp = newnode;
-        }
-    }
-    temp = first1;
-
-    printf("Data are: ");
-    while (temp != NULL)
-    {
-        printf("%d ", temp->info);
-        temp = temp->Link;
+        scanf("%d",&x);
+        insertfirst(x);
     }
 
+    dispaly();
     return 0;
 }
 

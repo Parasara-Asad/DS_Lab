@@ -16,8 +16,8 @@ void insertfirst(int x)
 
     if (first == NULL)
     {
-        first = last = newnode;
         newnode->link = first;
+        first = last = newnode;
         return;
     }
     newnode->link = first;
@@ -36,8 +36,8 @@ void insertlast(int x)
         return;
     }
     last->link = newnode;
-    newnode->link = first;
     last = newnode;
+    last->link = first;
 }
 
 void deleteposition(int pos)
@@ -105,7 +105,6 @@ void display()
         printf("%d ", save->info);
         save = save->link;
     }
-
     printf("%d\n", save->info);
     printf("=====================\n");
 }

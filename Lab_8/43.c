@@ -1,79 +1,104 @@
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 struct node
 {
     int info;
     struct node *link;
 };
-
+struct node *first = NULL;
 struct node *first1 = NULL;
 struct node *first2 = NULL;
 
-void insertfirst1(int x){
-    struct node *newnode = (struct node *)malloc(sizeof(struct node));
+void insertfirst1(int x)
+{
+    struct node *newnode;
+    newnode = (struct node *)malloc(sizeof(struct node));
     newnode->info = x;
     newnode->link = first1;
     first1 = newnode;
 }
-void insertfirst2(int x){
-    struct node *newnode = (struct node *)malloc(sizeof(struct node));
+void insertfirst2(int x)
+{
+    struct node *newnode;
+    newnode = (struct node *)malloc(sizeof(struct node));
     newnode->info = x;
     newnode->link = first2;
     first2 = newnode;
 }
 
-void sameornot(){
+void sameornot()
+{
+    int flag = 0;
     struct node *save1 = first1;
     struct node *save2 = first2;
-    int issame = 0;
-    while (save1 != NULL && save2 !=NULL)
+    while (save1 != NULL && save2 != NULL)
     {
-        if (save1->info !=save2->info)
+        if (save1->info != save2->info)
         {
-            printf("list is not same");
-            issame=1;
+            printf("List is not same\n");
             return;
         }
+
         save1 = save1->link;
         save2 = save2->link;
     }
-    if (issame==0)
+    if (save1 == NULL && save2 == NULL)
     {
-        printf("List is same");
+        printf("Lists are Same\n");
     }
-    
-    
-    
-    
+    else
+    {
+        printf("Lists are NOT same \n");
+    }
 }
 
-void display(struct node *first){
-    struct node *save;
-    if (first == NULL)
+void display1()
+{
+    if (first1 == NULL)
     {
-        printf("List is empty!");
+        printf("List is empty\n");
         return;
     }
-    save = first;
+
+    struct node *save = first1;
+    printf("List is:");
     while (save != NULL)
     {
-        printf(" %d ",save->info);
+        printf(" %d", save->info);
         save = save->link;
     }
     printf("\n");
-    
+}
+void display2()
+{
+    if (first2 == NULL)
+    {
+        printf("List is empty\n");
+        return;
+    }
+
+    struct node *save = first2;
+    printf("List is:");
+    while (save != NULL)
+    {
+        printf(" %d", save->info);
+        save = save->link;
+    }
+    printf("\n");
 }
 
-int main(){
+int main()
+{
     insertfirst1(1);
     insertfirst1(2);
     insertfirst1(3);
     insertfirst2(1);
-    insertfirst2(5);
+    insertfirst2(2);
     insertfirst2(3);
-    // display(first1);
-    // display(first2);
     sameornot();
+    display1();
+    display2();
+
     return 0;
 }
