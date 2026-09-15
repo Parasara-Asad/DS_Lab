@@ -1,0 +1,255 @@
+{
+  "C boilerplate": {
+    "prefix": "c boiler",
+    "body": ["#include <stdio.h>", "int main(){", "\t$0", "\treturn 0;", "}"],
+    "description": "The C language boilerplate"
+  },
+
+  "myprintf": {
+    "prefix": "myprintf",
+    "body": ["printf(\"$0\");"]
+  },
+
+  "1d arry": {
+    "prefix": "1d Array",
+    "body": [
+      "int size;",
+      "printf(\"Enter Array Size is: \");",
+      "scanf(\"%d\", &size);",
+      "int arr[size];",
+      "for(int i = 0; i < size; i++)",
+      "{",
+      "\tprintf(\"Enter Number %d: \", i + 1);",
+      "\tscanf(\"%d\", &arr[i]);",
+      "}",
+      "$0"
+    ],
+    "description": "1D Array input"
+  },
+
+  "my for": {
+    "prefix": "my for",
+    "body": ["for(int i = 0; i < size$1; i++)", "{", "\t$0", "}"],
+    "description": "Basic for loop in C"
+  },
+
+  "2d Array": {
+    "prefix": "2d Array",
+    "body": [
+      "int r, c;",
+      "printf(\"Enter Array Row is: \");",
+      "scanf(\"%d\", &r);",
+      "printf(\"Enter Array Column is: \");",
+      "scanf(\"%d\", &c);",
+      "int arr[r][c];",
+      "for(int i = 0; i < r; i++)",
+      "{",
+      "\tfor(int j = 0; j < c; j++)",
+      "\t{",
+      "\t\tprintf(\"Enter Element [%d][%d]: \", i, j);",
+      "\t\tscanf(\"%d\", &arr[i][j]);",
+      "\t}",
+      "}",
+      "$0"
+    ],
+    "description": "2D Array input"
+  },
+
+  "2d printf": {
+    "prefix": "2d printf",
+    "body": [
+      "for(int i = 0; i < r; i++)",
+      "{",
+      "\tfor(int j = 0; j < c; j++)",
+      "\t{",
+      "\t\tprintf(\"%d \", arr[i][j]);",
+      "\t}",
+      "\tprintf(\"\\n\");",
+      "}"
+    ],
+    "description": "2D Array print"
+  },
+
+  "struct node": {
+    "prefix": "struct node",
+    "body": [
+      "struct node",
+      "{",
+      "\tint info;",
+      "\tstruct node *link;",
+      "};",
+      "struct node *first = NULL;"
+    ],
+    "description": "Structure of node"
+  },
+
+  "bubble sort": {
+    "prefix": "bubble sort",
+    "body": [
+      "for(int i = 0; i < size - 1; i++)",
+      "{",
+      "\tfor(int j = 0; j < size - i - 1; j++)",
+      "\t{",
+      "\t\tif(arr[j] > arr[j + 1])",
+      "\t\t{",
+      "\t\t\tint temp = arr[j];",
+      "\t\t\tarr[j] = arr[j + 1];",
+      "\t\t\tarr[j + 1] = temp;",
+      "\t\t}",
+      "\t}",
+      "}",
+      "$0"
+    ],
+    "description": "Bubble Sort in ascending order"
+  },
+
+  "selection sort": {
+    "prefix": "selection sort",
+    "body": [
+      "for(int i = 0; i < size - 1; i++)",
+      "{",
+      "\tint min = i;",
+      "",
+      "\tfor(int j = i + 1; j < size; j++)",
+      "\t{",
+      "\t\tif(arr[j] < arr[min])",
+      "\t\t{",
+      "\t\t\tmin = j;",
+      "\t\t}",
+      "\t}",
+      "",
+      "\tint temp = arr[i];",
+      "\tarr[i] = arr[min];",
+      "\tarr[min] = temp;",
+      "}",
+      "$0"
+    ],
+    "description": "Selection Sort in ascending order"
+  },
+
+  "insertion sort": {
+    "prefix": "insertion sort",
+    "body": [
+      "for(int i = 1; i < size; i++)",
+      "{",
+      "\tint key = arr[i];",
+      "\tint j = i - 1;",
+      "",
+      "\twhile(j >= 0 && arr[j] > key)",
+      "\t{",
+      "\t\tarr[j + 1] = arr[j];",
+      "\t\tj--;",
+      "\t}",
+      "",
+      "\tarr[j + 1] = key;",
+      "}",
+      "$0"
+    ],
+    "description": "Insertion Sort in ascending order"
+  },
+  "merge sort": {
+    "prefix": "merge sort",
+    "body": [
+      "void merge(int arr[], int low, int mid, int high)",
+      "{",
+      "\tint i = low;",
+      "\tint j = mid + 1;",
+      "\tint k = 0;",
+      "\tint temp[high - low + 1];",
+      "",
+      "\twhile(i <= mid && j <= high)",
+      "\t{",
+      "\t\tif(arr[i] < arr[j])",
+      "\t\t{",
+      "\t\t\ttemp[k] = arr[i];",
+      "\t\t\ti++;",
+      "\t\t}",
+      "\t\telse",
+      "\t\t{",
+      "\t\t\ttemp[k] = arr[j];",
+      "\t\t\tj++;",
+      "\t\t}",
+      "\t\tk++;",
+      "\t}",
+      "",
+      "\twhile(i <= mid)",
+      "\t{",
+      "\t\ttemp[k] = arr[i];",
+      "\t\ti++;",
+      "\t\tk++;",
+      "\t}",
+      "",
+      "\twhile(j <= high)",
+      "\t{",
+      "\t\ttemp[k] = arr[j];",
+      "\t\tj++;",
+      "\t\tk++;",
+      "\t}",
+      "",
+      "\tfor(i = low, k = 0; i <= high; i++, k++)",
+      "\t{",
+      "\t\tarr[i] = temp[k];",
+      "\t}",
+      "}",
+      "",
+      "void mergeSort(int arr[], int low, int high)",
+      "{",
+      "\tif(low < high)",
+      "\t{",
+      "\t\tint mid = (low + high) / 2;",
+      "",
+      "\t\tmergeSort(arr, low, mid);",
+      "\t\tmergeSort(arr, mid + 1, high);",
+      "\t\tmerge(arr, low, mid, high);",
+      "\t}",
+      "}",
+      "",
+      "mergeSort(arr, 0, size - 1);",
+      "$0"
+    ],
+    "description": "Merge Sort using Array"
+  },
+  "quick sort": {
+    "prefix": "quick sort",
+    "body": [
+      "int partition(int arr[], int low, int high)",
+      "{",
+      "\tint pivot = arr[high];",
+      "\tint i = low - 1;",
+      "",
+      "\tfor(int j = low; j < high; j++)",
+      "\t{",
+      "\t\tif(arr[j] < pivot)",
+      "\t\t{",
+      "\t\t\ti++;",
+      "",
+      "\t\t\tint temp = arr[i];",
+      "\t\t\tarr[i] = arr[j];",
+      "\t\t\tarr[j] = temp;",
+      "\t\t}",
+      "\t}",
+      "",
+      "\tint temp = arr[i + 1];",
+      "\tarr[i + 1] = arr[high];",
+      "\tarr[high] = temp;",
+      "",
+      "\treturn i + 1;",
+      "}",
+      "",
+      "void quickSort(int arr[], int low, int high)",
+      "{",
+      "\tif(low < high)",
+      "\t{",
+      "\t\tint pi = partition(arr, low, high);",
+      "",
+      "\t\tquickSort(arr, low, pi - 1);",
+      "\t\tquickSort(arr, pi + 1, high);",
+      "\t}",
+      "}",
+      "",
+      "quickSort(arr, 0, size - 1);",
+      "$0"
+    ],
+    "description": "Quick Sort using Array"
+  }
+}
